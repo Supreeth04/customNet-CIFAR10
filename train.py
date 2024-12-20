@@ -44,7 +44,7 @@ def train_model():
     print(f"Using device: {device}")
     
     # Hyperparameters
-    num_epochs = 25
+    num_epochs = 35
     batch_size = 128
     accumulation_steps = 4
     learning_rate = 0.001
@@ -173,6 +173,9 @@ def train_model():
             
             # Update progress bar
             train_loop.set_postfix(loss=loss.item())
+            
+            # Step the scheduler
+            scheduler.step()
         
         # Calculate training metrics
         train_accuracy = 100 * correct / total
